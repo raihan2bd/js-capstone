@@ -47,3 +47,19 @@ body {
   padding: 8px 10px;
   color: #fff;
 }
+
+@media screen and (min-width: 768px) {
+  .mobile-nav-group {
+    display: none;
+  }
+
+  .desktop-nav-group {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+}
