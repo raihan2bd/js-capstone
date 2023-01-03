@@ -48,6 +48,17 @@ body {
   color: #fff;
 }
 
+.footer {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  position: fixed;
+  text-align: center;
+  padding: 20px 25px;
+  border-top: 1px solid #333;
+}
+
 @media screen and (min-width: 768px) {
   .mobile-nav-group {
     display: none;
