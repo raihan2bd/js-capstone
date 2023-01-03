@@ -1,3 +1,65 @@
 * {
   box-sizing: border-box;
 }
+
+html,
+body {
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+  background: #0d1117;
+  color: #fff;
+}
+
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #333;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-nav-group {
+  display: none;
+  list-style: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.desktop-nav-group {
+  display: none;
+}
+
+.nav-menu {
+  display: block;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding: 8px 10px;
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-nav-group {
+    display: none;
+  }
+
+  .desktop-nav-group {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+}
