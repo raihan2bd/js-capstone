@@ -1,4 +1,5 @@
 import './style.css';
+import './assets/img/icons8-menu-rounded-24.png';
 
 // enviroment API
 
