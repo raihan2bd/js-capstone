@@ -12,6 +12,7 @@ body {
 }
 
 .header {
+  padding: 3%;
   height: 70px;
   display: flex;
   justify-content: center;
@@ -46,6 +47,17 @@ body {
   text-decoration: none;
   padding: 8px 10px;
   color: #fff;
+}
+
+.footer {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  position: fixed;
+  text-align: center;
+  padding: 20px 25px;
+  border-top: 1px solid #333;
 }
 
 @media screen and (min-width: 768px) {
