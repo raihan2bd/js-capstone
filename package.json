@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack --mode development", 
+    "start": "webpack serve --open", 
+    "build": "webpack --mode production", 
+    "watch": "webpack --watch", 
+    "deploy": "gh-pages -d dist" 
   },
   "repository": {
     "type": "git",
@@ -38,4 +43,5 @@
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"
   }
+
 }
