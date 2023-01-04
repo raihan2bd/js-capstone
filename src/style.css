@@ -219,6 +219,7 @@ body {
 .comment-title {
   text-align: center;
   margin: 10px 0;
+  font-weight: normal;
 }
 
 .comment-goup {
