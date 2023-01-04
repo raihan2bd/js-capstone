@@ -2,6 +2,7 @@
 import './style.css';
 import './assets/img/icons8-favorite-30.png';
 import './assets/img/icons8-menu-rounded-24.png';
+import './assets/img/icons8-multiply-24.png';
 
 import fetchTvShow from './modules/displayItems.js';
 
@@ -13,9 +14,6 @@ const BASE_URL = `https://us-central1-involvement-api.cloudfunctions.net/capston
 // external api url
 const MOVIE_API = 'https://api.tvmaze.com/seasons/1/episodes';
 
-// // Select dom elements
-const tvSHowContainer = document.querySelector('.show-group');
-
 window.onload = () => {
-  fetchTvShow(MOVIE_API, tvSHowContainer);
+  fetchTvShow(MOVIE_API);
 };

@@ -1,6 +1,9 @@
-const render = (data, container) => {
+import { listItemsContainer } from './domSelector.js';
+import fetchSingleShow from './popupComment.js';
+
+const render = (data) => {
   if (data.length > 0) {
-    container.innerHTML = '';
+    listItemsContainer.innerHTML = '';
 
     data.forEach((i) => {
       const item = document.createElement('li');
@@ -46,6 +49,9 @@ const render = (data, container) => {
       const commentBtn = document.createElement('button');
       commentBtn.className = 'btn-action btn-comment';
       commentBtn.innerText = 'Comments';
+      commentBtn.addEventListener('click', (e) => {
+        fetchSingleShow(e);
+      });
 
       const reservationBtn = document.createElement('button');
       reservationBtn.className = 'btn-action btn-reservation';
@@ -55,18 +61,18 @@ const render = (data, container) => {
 
       item.append(showImg, showInfo, showActions); // append clild all the elements in item.
 
-      container.appendChild(item);
+      listItemsContainer.appendChild(item);
     });
   } else {
-    container.innerHTML = '<p class="no-data">No Data Found</p>';
+    listItemsContainer.innerHTML = '<p class="no-data">No Data Found</p>';
   }
 };
 
-const fetchTvShows = async (url, container) => {
+const fetchTvShows = async (url) => {
   const res = await fetch(url);
   const result = await res.json();
 
-  render(result, container);
+  render(result);
 };
 
 export default fetchTvShows;

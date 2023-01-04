@@ -125,6 +125,97 @@ body {
   border: none;
 }
 
+/* Article modal css styles will start from here */
+.popup-modal {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(8, 19, 43, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  justify-content: center;
+}
+
+.modal-card {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  background: #161b22;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  gap: 10px;
+  padding: 24px;
+  max-width: 1156px;
+  margin: 25px 15px;
+  position: relative;
+  color: #fff;
+}
+
+.modal-card::-webkit-scrollbar {
+  display: none;
+}
+
+.btn-cross {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.card-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.card-img img {
+  max-width: 100%;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.card-spec-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #333;
+}
+
+.card-spec {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 25px;
+  max-width: 600px;
+}
+
+.spec-item {
+  padding: 15px;
+  text-align: justify;
+}
+
+.show {
+  display: flex;
+}
+
 @media screen and (min-width: 768px) {
   .mobile-nav-group {
     display: none;
@@ -148,5 +239,10 @@ body {
 
   .show-item {
     width: 32%;
+  }
+
+  /* popup modal css */
+  .card-des {
+    padding: 0 5%;
   }
 }
