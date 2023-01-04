@@ -60,6 +60,71 @@ body {
   border-top: 1px solid #333;
 }
 
+/* Main content css start form here */
+.main-container {
+  display: flex;
+  margin: 70px 0;
+  flex-direction: column;
+}
+
+.tv-shows {
+  display: flex;
+  justify-content: center;
+}
+
+.show-group {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  gap: 15px;
+}
+
+.show-item {
+  padding: 10px;
+  border: 1px solid #333;
+}
+
+.show-item-img {
+  display: block;
+  max-width: 100%;
+}
+
+.show-item-img img {
+  max-width: 100%;
+}
+
+.show-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-like {
+  background: transparent;
+  border: none;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.show-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn-action {
+  padding: 10px 15px;
+  background: #ff7b00;
+  color: #fff;
+  border: none;
+}
+
 @media screen and (min-width: 768px) {
   .mobile-nav-group {
     display: none;
@@ -73,5 +138,15 @@ body {
 
   .nav-menu {
     display: none;
+  }
+
+  /* Main content css start from here */
+  .show-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .show-item {
+    width: 32%;
   }
 }
