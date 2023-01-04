@@ -35,7 +35,11 @@ const render = (data) => {
 
       // like count
       const likeCount = document.createElement('span');
-      likeCount.innerText = '5 likes';
+      if (i.likes > 1) {
+        likeCount.innerText = `${i.likes} likes`;
+      } else {
+        likeCount.innerHTML = `${i.likes} like`;
+      }
 
       showLikeAction.append(btnLike, likeCount); // append like actions child element.
 
@@ -71,11 +75,42 @@ const render = (data) => {
   }
 };
 
-const fetchTvShows = async (url) => {
-  const res = await fetch(url);
+const fetchTvShows = async (movieApi, invApi) => {
+  const res = await fetch(movieApi);
   const result = await res.json();
 
-  render(result);
+  // call the Involment api to get likes
+  const resInv = await fetch(`${invApi}/likes/`);
+  const likesResult = await resInv.json();
+
+  // filter Array thats have Likes
+  const filterArrWithLikes = [];
+  result.forEach((item) => {
+    likesResult.forEach((likeItem) => {
+      if (item.id === likeItem.item_id) {
+        filterArrWithLikes.push({ ...item, likes: likeItem.likes });
+      }
+    });
+  });
+
+  // filter Array thats have not likes
+  let filterWithoutLikes = [];
+  filterWithoutLikes = result.filter(
+    (el) => !filterArrWithLikes.find((element) => element.id === el.id),
+  ); //eslint-disable-line
+
+  // modify the filterWithout array likes count 0;
+  const modifiyFilterWithoutLikes = [];
+  filterWithoutLikes.forEach((item) => {
+    modifiyFilterWithoutLikes.push({ ...item, likes: 0 });
+  });
+
+  // join and sort the arrays
+  const joinArr = modifiyFilterWithoutLikes.concat(filterArrWithLikes);
+  joinArr.sort((a, b) => a.id - b.id);
+
+  // call render function to display the item list
+  render(joinArr);
 };
 
 export default fetchTvShows;

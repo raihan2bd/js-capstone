@@ -8,12 +8,12 @@ import fetchTvShow from './modules/displayItems.js';
 
 // enviroment API
 
-const apiId = "iEGE9SCgBGcN5YPRLEj5"; //eslint-disable-line
-const BASE_URL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apiId}`; //eslint-disable-line
+const apiId = 'Y1Ocl2k5LoJdVEhHia5O';
+const BASE_URL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apiId}`;
 
 // external api url
 const MOVIE_API = 'https://api.tvmaze.com/seasons/1/episodes';
 
 window.onload = () => {
-  fetchTvShow(MOVIE_API);
+  fetchTvShow(MOVIE_API, BASE_URL);
 };
