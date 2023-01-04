@@ -216,6 +216,27 @@ body {
   display: flex;
 }
 
+.comment-title {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.comment-goup {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 15px;
+}
+
+.comment-item {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #333;
+}
+
 @media screen and (min-width: 768px) {
   .mobile-nav-group {
     display: none;
