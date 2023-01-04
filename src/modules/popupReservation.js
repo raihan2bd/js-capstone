@@ -43,7 +43,32 @@ const render = (data) => {
   <li class="spec-item">Rating: ${data.rating.average}</li>
 </ul>`;
 
-  modalCard.append(btnCross, cardImg, title, des, cardSpec); // append child elements in cardModal
+  const reservationSection = document.createElement('div');
+  reservationSection.className = 'reservation-section';
+
+  const reservationHeader = document.createElement('h3');
+  reservationHeader.className = 'reservation-title';
+  reservationHeader.innerText = `Reservations (${data.reservations.length})`;
+
+  const reservationGroup = document.createElement('ul');
+  reservationGroup.className = 'reservation-group';
+
+  let reservationItems = '';
+
+  if (data.reservations.length > 0) {
+    data.reservations.forEach((item) => {
+      reservationItems += `<li class='reservation-item'>
+      ${item.date_start} - ${item.date_end} by ${item.username}</li>`;
+    });
+  }
+
+  reservationGroup.innerHTML = reservationItems; // append reservation list
+
+  reservationSection.append(reservationHeader, reservationGroup);
+
+  // append child elements in cardModal
+  // eslint-disable-next-line max-len
+  modalCard.append(btnCross, cardImg, title, des, cardSpec, reservationSection);
 
   modalContainer.innerHTML = '';
   modalContainer.append(modalCard); // append cardModal
@@ -56,7 +81,20 @@ const fetchSingleShow = async (e) => {
   const res = await fetch(url);
   const result = await res.json();
 
-  render(result);
+  const reservationRes = await fetch(
+    `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y1Ocl2k5LoJdVEhHia5O/reservations?item_id=${id}`,
+  );
+
+  let filterResult = { ...result };
+
+  const reservationResult = await reservationRes.json();
+  if (reservationResult && !reservationResult.error) {
+    filterResult = { ...filterResult, reservations: reservationResult };
+  } else {
+    filterResult = { ...filterResult, reservations: [] };
+  }
+
+  render(filterResult);
 };
 
 export default fetchSingleShow;
