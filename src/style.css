@@ -142,15 +142,11 @@ body {
   justify-content: center;
 }
 
-.modal-card::-webkit-scrollbar {
-  display: none;
-}
-
 .modal-card {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  background: #161B22;
+  background: #161b22;
   width: 100%;
   height: 100%;
   overflow: scroll;
@@ -160,6 +156,10 @@ body {
   margin: 25px 15px;
   position: relative;
   color: #fff;
+}
+
+.modal-card::-webkit-scrollbar {
+  display: none;
 }
 
 .btn-cross {
@@ -177,7 +177,7 @@ body {
   margin-top: 15px;
 }
 
-.card-img img{
+.card-img img {
   max-width: 100%;
 }
 
