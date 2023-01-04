@@ -1,4 +1,5 @@
 import { listItemsContainer } from './domSelector.js';
+import fetchSingleShowComment from './popupComment.js';
 import fetchSingleShow from './popupReservation.js';
 
 const render = (data) => {
@@ -54,7 +55,7 @@ const render = (data) => {
       commentBtn.className = 'btn-action btn-comment';
       commentBtn.innerText = 'Comments';
       commentBtn.addEventListener('click', (e) => {
-        fetchSingleShow(e);
+        fetchSingleShowComment(e);
       });
 
       const reservationBtn = document.createElement('button');

@@ -43,20 +43,57 @@ const render = (data) => {
   <li class="spec-item">Rating: ${data.rating.average}</li>
 </ul>`;
 
-  modalCard.append(btnCross, cardImg, title, des, cardSpec); // append child elements in cardModal
+  const commentSection = document.createElement('div');
+  commentSection.className = 'comment-section';
+
+  const commentHeader = document.createElement('h3');
+  commentHeader.className = 'comment-title';
+  commentHeader.innerText = `Comments (${data.comments.length})`;
+
+  const commentGroup = document.createElement('ul');
+  commentGroup.className = 'comment-goup';
+
+  let commentItems = '';
+
+  if (data.comments.length > 0) {
+    data.comments.forEach((item) => {
+      commentItems += `<li class='comment-item'>
+      ${item.creation_date} ${item.username} ${item.comment}</li>`;
+    });
+  }
+
+  commentGroup.innerHTML = commentItems; // append comment list
+
+  commentSection.append(commentHeader, commentGroup);
+
+  // append child elements in cardModal
+  modalCard.append(btnCross, cardImg, title, des, cardSpec, commentSection);
 
   modalContainer.innerHTML = '';
   modalContainer.append(modalCard); // append cardModal
 };
 
-const fetchSingleShow = async (e) => {
+const fetchSingleShowComment = async (e) => {
   modalContainer.classList.add('show');
   const { id } = e.target.parentElement.parentElement;
   const url = `https://api.tvmaze.com/episodes/${id}`;
   const res = await fetch(url);
   const result = await res.json();
 
-  render(result);
+  const commentRes = await fetch(
+    `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y1Ocl2k5LoJdVEhHia5O/comments?item_id=${id}`,
+  );
+
+  let filterResult = { ...result };
+
+  const commentResult = await commentRes.json();
+  if (commentResult && !commentResult.error) {
+    filterResult = { ...filterResult, comments: commentResult };
+  } else {
+    filterResult = { ...filterResult, comments: [] };
+  }
+
+  render(filterResult);
 };
 
-export default fetchSingleShow;
+export default fetchSingleShowComment;
