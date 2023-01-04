@@ -1,5 +1,5 @@
 import { listItemsContainer } from './domSelector.js';
-import fetchSingleShow from './popupComment.js';
+import fetchSingleShow from './popupReservation.js';
 
 const render = (data) => {
   if (data.length > 0) {
@@ -56,6 +56,9 @@ const render = (data) => {
       const reservationBtn = document.createElement('button');
       reservationBtn.className = 'btn-action btn-reservation';
       reservationBtn.innerText = 'Reservations';
+      reservationBtn.addEventListener('click', (e) => {
+        fetchSingleShow(e);
+      });
 
       showActions.append(commentBtn, reservationBtn); // append child action buttons in showActions
 
