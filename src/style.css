@@ -69,7 +69,12 @@ body {
 
 .tv-shows {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show-title {
+  text-align: center;
 }
 
 .show-group {
