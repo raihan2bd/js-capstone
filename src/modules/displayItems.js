@@ -2,6 +2,30 @@ import { listItemsContainer } from './domSelector.js';
 import fetchSingleShowComment from './popupComment.js';
 import fetchSingleShow from './popupReservation.js';
 
+// createNew like
+const createNewLike = async (id, likeCount) => {
+  const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y1Ocl2k5LoJdVEhHia5O/likes';
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ item_id: id }),
+  });
+
+  if (!res.ok && res.status !== 201) {
+    return;
+  }
+
+  const resp = await fetch(url);
+  const result = await resp.json();
+  const likeData = result.find((item) => item.item_id === id);
+  if (likeData) {
+    likeCount.innerText = likeData.likes > 1 ? `${likeData.likes} likes` : `${likeData.likes} like`;
+  }
+};
+
+// render the item list
 const render = (data) => {
   if (data.length > 0) {
     listItemsContainer.innerHTML = '';
@@ -41,6 +65,11 @@ const render = (data) => {
       } else {
         likeCount.innerHTML = `${i.likes} like`;
       }
+
+      // btn like event to create new like
+      btnLike.addEventListener('click', () => {
+        createNewLike(i.id, likeCount);
+      });
 
       showLikeAction.append(btnLike, likeCount); // append like actions child element.
 
