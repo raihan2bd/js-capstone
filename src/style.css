@@ -312,6 +312,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 form {
@@ -324,26 +325,32 @@ form {
 
 input,
 #submitBtn {
-  height: 40px;
   border: 2px solid #333;
   text-align: justify;
   border-radius: 5px;
   font-size: 1.2rem;
-  color: #333;
+  color: #fff;
+  background: #010409;
+  padding: 8px 15px;
 }
 
 #submitBtn {
   width: fit-content;
-  padding: 0 20px;
+  padding: 10px 20px;
+  background: #ff7b00;
+  color: #fff;
+  border: none;
 }
 
 textarea {
   resize: none;
   height: 100px;
+  padding: 10px 20px;
   border: 2px solid #333;
   border-radius: 5px;
   font-size: 1.2rem;
-  color: #333;
+  background: #010409;
+  color: #fff;
 }
 
 button {
@@ -377,6 +384,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 25px;
 }
 
 @media screen and (min-width: 768px) {
