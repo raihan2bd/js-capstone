@@ -11,13 +11,42 @@ body {
   color: #fff;
 }
 
+a {
+  text-decoration: none;
+}
+
+.df {
+  display: flex !important;
+}
+
+.dn {
+  display: none !important;
+}
+
 .header {
   padding: 3%;
   height: 70px;
   display: flex;
   justify-content: center;
-  border: 1px solid #333;
   align-items: center;
+  background: #161b22;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ff7b00;
+}
+
+.nav-menu {
+  background: transparent;
+  border: 1px solid #333;
+  padding: 3px 5px;
+  align-self: center;
+}
+
+.nav-menu:active {
+  background: #333;
 }
 
 .navbar {
@@ -30,9 +59,17 @@ body {
 
 .mobile-nav-group {
   display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
   list-style: none;
   flex-direction: column;
+  margin: 0;
+  padding: 50px 0;
   gap: 20px;
+  background: #161b22;
 }
 
 .desktop-nav-group {
@@ -44,9 +81,23 @@ body {
 }
 
 .nav-link {
-  text-decoration: none;
-  padding: 8px 10px;
   color: #fff;
+  color: #ff7b00;
+  padding: 8px 10px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.mobile-nav-group .nav-link {
+  display: block;
+  padding: 15px 20px;
+  margin-bottom: 5px;
+  background: #0d1117;
+}
+
+.nav-link:hover {
+  color: #fff;
+  background: #ff7b00;
 }
 
 .footer {
@@ -57,6 +108,7 @@ body {
   position: relative;
   text-align: center;
   padding: 20px 25px;
+  background: #161b22;
   border-top: 1px solid #333;
 }
 
@@ -136,6 +188,10 @@ body {
   border: none;
 }
 
+.btn-action:active {
+  transform: translateY(-2px);
+}
+
 /* Article modal css styles will start from here */
 .popup-modal {
   display: none;
@@ -179,6 +235,10 @@ body {
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+.btn-cross:active {
+  transform: translateY(-2px);
 }
 
 .card-img {
