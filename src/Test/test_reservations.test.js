@@ -1,6 +1,6 @@
-import reservationCounter from "../modules/reservationCounter.js";
+import reservationCounter from '../modules/reservationCounter.js';
 
-describe("Test Display Reservation counter", () => {
+describe('Test Display Reservation counter', () => {
   document.body.innerHTML = `
     <h3 class='reservation-title'>reservations <span id='reservation_count'>(0)</span></h3>
     <ul class='reservation-item-group'>
@@ -11,30 +11,28 @@ describe("Test Display Reservation counter", () => {
       <li class='reservation-item'>Reservation 5</li>
     </ul>`;
 
-  test("Reservation count should be 5", () => {
+  test('Reservation count should be 5', () => {
     const reservationContainer = document.querySelector(
-      ".reservation-item-group"
+      '.reservation-item-group',
     );
-    const reservationCountContainer =
-      document.getElementById("reservation_count");
+    const reservationCountContainer = document.getElementById('reservation_count');
 
     const count = reservationCounter(
       reservationCountContainer,
-      reservationContainer
+      reservationContainer,
     );
     expect(count).toBe(5);
   });
 
-  test("Reservation count innerText should be equal to reservation container chlild count", () => {
+  test('Reservation count innerText should be equal to reservation container chlild count', () => {
     const reservationContainer = document.querySelector(
-      ".reservation-item-group"
+      '.reservation-item-group',
     );
-    const reservationCountContainer =
-      document.getElementById("reservation_count");
+    const reservationCountContainer = document.getElementById('reservation_count');
 
     const count = reservationCounter(
       reservationCountContainer,
-      reservationContainer
+      reservationContainer,
     );
     expect(reservationContainer.childElementCount).toBe(count);
   });
