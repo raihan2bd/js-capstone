@@ -1,7 +1,4 @@
 import itemCounter from '../modules/itemCounter.js';
-/**
- * @jest-environment jsdom
- */
 
 describe('Test Display Item counter', () => {
   document.body.innerHTML = `
