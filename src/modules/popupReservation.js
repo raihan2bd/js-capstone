@@ -1,3 +1,4 @@
+import { BASE_URL } from './apiUrls.js';
 import { modalContainer } from './domSelector.js';
 
 const render = (data) => {
@@ -81,9 +82,7 @@ const fetchSingleShow = async (e) => {
   const res = await fetch(url);
   const result = await res.json();
 
-  const reservationRes = await fetch(
-    `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y1Ocl2k5LoJdVEhHia5O/reservations?item_id=${id}`,
-  );
+  const reservationRes = await fetch(`${BASE_URL}/reservations?item_id=${id}`);
 
   let filterResult = { ...result };
 

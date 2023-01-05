@@ -6,14 +6,7 @@ import './assets/img/icons8-multiply-24.png';
 
 import fetchTvShow from './modules/displayItems.js';
 
-// enviroment API
-
-const apiId = 'Y1Ocl2k5LoJdVEhHia5O';
-const BASE_URL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${apiId}`;
-
-// external api url
-const MOVIE_API = 'https://api.tvmaze.com/seasons/1/episodes';
-
+// load the item list on the fly.
 window.onload = () => {
-  fetchTvShow(MOVIE_API, BASE_URL);
+  fetchTvShow();
 };

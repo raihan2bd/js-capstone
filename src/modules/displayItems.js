@@ -1,11 +1,11 @@
 import { listItemsContainer } from './domSelector.js';
 import fetchSingleShowComment from './popupComment.js';
 import fetchSingleShow from './popupReservation.js';
+import { BASE_URL, MOVIE_API } from './apiUrls.js';
 
 // createNew like
 const createNewLike = async (id, likeCount) => {
-  const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y1Ocl2k5LoJdVEhHia5O/likes';
-  const res = await fetch(url, {
+  const res = await fetch(`${BASE_URL}/likes`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ const createNewLike = async (id, likeCount) => {
     return;
   }
 
-  const resp = await fetch(url);
+  const resp = await fetch(`${BASE_URL}/likes`);
   const result = await resp.json();
   const likeData = result.find((item) => item.item_id === id);
   if (likeData) {
@@ -105,12 +105,12 @@ const render = (data) => {
   }
 };
 
-const fetchTvShows = async (movieApi, invApi) => {
-  const res = await fetch(movieApi);
+const fetchTvShows = async () => {
+  const res = await fetch(MOVIE_API);
   const result = await res.json();
 
   // call the Involment api to get likes
-  const resInv = await fetch(`${invApi}/likes/`);
+  const resInv = await fetch(`${BASE_URL}/likes/`);
   const likesResult = await resInv.json();
 
   // filter Array thats have Likes

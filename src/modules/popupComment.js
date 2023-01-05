@@ -1,4 +1,50 @@
+import { BASE_URL } from './apiUrls.js';
 import { modalContainer } from './domSelector.js';
+
+const createNewComment = async (url, data, commentsContainer, Form) => {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok && res.status !== 201) {
+    return;
+  }
+
+  const fetchComUrl = `${BASE_URL}/comments?item_id=${data.item_id}`;
+
+  const resp = await fetch(fetchComUrl);
+
+  const result = await resp.json();
+
+  // manupulate the dom
+  const commentHeader = document.createElement('h3');
+  commentHeader.className = 'comment-title';
+  commentHeader.innerText = `Comments (${result.length})`;
+
+  const commentGroup = document.createElement('ul');
+  commentGroup.className = 'comment-goup';
+
+  let commentItems = '';
+
+  if (result.length > 0) {
+    result.forEach((item) => {
+      commentItems += `<li class='comment-item'>
+        ${item.creation_date} ${item.username} ${item.comment}</li>`;
+    });
+  }
+
+  commentGroup.innerHTML = commentItems; // append comment list
+  commentsContainer.innerHTML = '';
+
+  commentsContainer.append(commentHeader, commentGroup);
+
+  Form.elements.name.value = '';
+  Form.elements.insight.value = '';
+};
 
 const render = (data) => {
   // modal card
@@ -25,7 +71,6 @@ const render = (data) => {
   const title = document.createElement('h2');
   title.className = 'card-title';
   title.innerText = data.name;
-
   // card des
   const des = document.createElement('div');
   des.className = 'card-des';
@@ -66,8 +111,42 @@ const render = (data) => {
 
   commentSection.append(commentHeader, commentGroup);
 
+  // Add comment
+  const commentForm = document.createElement('div');
+  commentForm.className = 'comment-form';
+  const addComment = document.createElement('h3');
+  addComment.className = 'comment-title';
+  addComment.innerText = 'Add a comment';
+  const Form = document.createElement('form');
+  Form.innerHTML = `
+<input type="text"  name="name" id="name" placeholder="Your name" maxlength="10" required>
+<textarea id="insight" name="insight" placeholder="Your insights"></textarea>
+<button type="submit" id="submitBtn">Submit</button>`;
+
+  commentForm.append(addComment, Form);
+
+  Form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = Form.elements.name.value;
+    const insight = Form.elements.insight.value;
+    const commentData = {
+      item_id: data.id,
+      username: name,
+      comment: insight,
+    };
+    const url = `${BASE_URL}/comments`;
+    createNewComment(url, commentData, commentSection, Form);
+  });
   // append child elements in cardModal
-  modalCard.append(btnCross, cardImg, title, des, cardSpec, commentSection);
+  modalCard.append(
+    btnCross,
+    cardImg,
+    title,
+    des,
+    cardSpec,
+    commentSection,
+    commentForm,
+  );
 
   modalContainer.innerHTML = '';
   modalContainer.append(modalCard); // append cardModal
@@ -80,9 +159,7 @@ const fetchSingleShowComment = async (e) => {
   const res = await fetch(url);
   const result = await res.json();
 
-  const commentRes = await fetch(
-    `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y1Ocl2k5LoJdVEhHia5O/comments?item_id=${id}`,
-  );
+  const commentRes = await fetch(`${BASE_URL}/comments?item_id=${id}`);
 
   let filterResult = { ...result };
 
