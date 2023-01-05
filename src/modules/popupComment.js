@@ -1,4 +1,5 @@
 import { BASE_URL } from './apiUrls.js';
+import commentCounter from './commentCounter.js';
 import { modalContainer } from './domSelector.js';
 
 const createNewComment = async (url, data, commentsContainer, Form) => {
@@ -23,7 +24,7 @@ const createNewComment = async (url, data, commentsContainer, Form) => {
   // manupulate the dom
   const commentHeader = document.createElement('h3');
   commentHeader.className = 'comment-title';
-  commentHeader.innerText = `Comments (${result.length})`;
+  commentHeader.innerHTML = 'Comments <span id=\'show_comment_count\'>(0)</span>';
 
   const commentGroup = document.createElement('ul');
   commentGroup.className = 'comment-goup';
@@ -39,6 +40,8 @@ const createNewComment = async (url, data, commentsContainer, Form) => {
 
   commentGroup.innerHTML = commentItems; // append comment list
   commentsContainer.innerHTML = '';
+
+  commentCounter(commentHeader.children[0], commentGroup);
 
   commentsContainer.append(commentHeader, commentGroup);
 
@@ -93,7 +96,7 @@ const render = (data) => {
 
   const commentHeader = document.createElement('h3');
   commentHeader.className = 'comment-title';
-  commentHeader.innerText = `Comments (${data.comments.length})`;
+  commentHeader.innerHTML = 'Comments <span id=\'show_comment_count\'>(0)</span>';
 
   const commentGroup = document.createElement('ul');
   commentGroup.className = 'comment-goup';
@@ -108,6 +111,8 @@ const render = (data) => {
   }
 
   commentGroup.innerHTML = commentItems; // append comment list
+
+  commentCounter(commentHeader.children[0], commentGroup);
 
   commentSection.append(commentHeader, commentGroup);
 
