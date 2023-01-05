@@ -1,5 +1,6 @@
 import { BASE_URL } from './apiUrls.js';
 import { modalContainer } from './domSelector.js';
+import reservationCounter from './reservationCounter.js';
 
 const createNewReservation = async (url, data, reservationContainer, Form) => {
   const res = await fetch(url, {
@@ -23,7 +24,7 @@ const createNewReservation = async (url, data, reservationContainer, Form) => {
   // manupulate the dom
   const reservationHeader = document.createElement('h3');
   reservationHeader.className = 'reservation-title';
-  reservationHeader.innerText = `Reservations (${result.length})`;
+  reservationHeader.innerHTML = 'Reservations <span id=\'show_comment_count\'>(0)</span>';
 
   const reservationGroup = document.createElement('ul');
   reservationGroup.className = 'reservation-group';
@@ -39,6 +40,8 @@ const createNewReservation = async (url, data, reservationContainer, Form) => {
 
   reservationGroup.innerHTML = reservationItems; // append reservation list
   reservationContainer.innerHTML = '';
+
+  reservationCounter(reservationHeader.children[0], reservationGroup);
 
   reservationContainer.append(reservationHeader, reservationGroup);
 
@@ -95,7 +98,7 @@ const render = (data) => {
 
   const reservationHeader = document.createElement('h3');
   reservationHeader.className = 'reservation-title';
-  reservationHeader.innerText = `Reservations (${data.reservations.length})`;
+  reservationHeader.innerHTML = 'Reservations <span id=\'show_comment_count\'>(0)</span>';
 
   const reservationGroup = document.createElement('ul');
   reservationGroup.className = 'reservation-group';
@@ -110,6 +113,8 @@ const render = (data) => {
   }
 
   reservationGroup.innerHTML = reservationItems; // append reservation list
+
+  reservationCounter(reservationHeader.children[0], reservationGroup);
 
   reservationSection.append(reservationHeader, reservationGroup);
 
