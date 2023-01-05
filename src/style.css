@@ -139,11 +139,12 @@ a {
   justify-content: center;
   width: 100%;
   max-width: 1000px;
-  gap: 15px;
+  gap: 20px;
 }
 
 .show-item {
-  padding: 10px;
+  padding: 20px;
+  background: #161b22;
   border: 1px solid #333;
 }
 
