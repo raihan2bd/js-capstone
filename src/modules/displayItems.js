@@ -1,67 +1,73 @@
-import { listItemsContainer } from './domSelector.js';
-import fetchSingleShowComment from './popupComment.js';
-import fetchSingleShow from './popupReservation.js';
+import { listItemsContainer } from "./domSelector.js";
+import fetchSingleShowComment from "./popupComment.js";
+import fetchSingleShow from "./popupReservation.js";
 
 const render = (data) => {
   if (data.length > 0) {
-    listItemsContainer.innerHTML = '';
+    listItemsContainer.innerHTML = "";
 
     data.forEach((i) => {
-      const item = document.createElement('li');
+      const item = document.createElement("li");
       item.id = i.id;
-      item.className = 'show-item';
+      item.className = "show-item";
 
       // create sho Img element
-      const showImg = document.createElement('div');
-      showImg.className = 'show-item-img';
+      const showImg = document.createElement("div");
+      showImg.className = "show-item-img";
       showImg.innerHTML = `<img src='${i.image.original}'>`;
 
       // create show info
-      const showInfo = document.createElement('div');
-      showInfo.className = 'show-info';
+      const showInfo = document.createElement("div");
+      showInfo.className = "show-info";
 
       // create tile for show info
-      const title = document.createElement('h3');
-      title.className = 'show-title';
+      const title = document.createElement("h3");
+      title.className = "show-title";
       title.innerText = i.name;
 
       // like action
-      const showLikeAction = document.createElement('div');
-      showLikeAction.className = 'shwo-like-action';
+      const showLikeAction = document.createElement("div");
+      showLikeAction.className = "shwo-like-action";
 
       // like button
-      const btnLike = document.createElement('button');
-      btnLike.className = 'btn-like';
-      btnLike.innerHTML = "<img src='./assets/img/icons8-favorite-30.png' alt='favorite'>";
+      const btnLike = document.createElement("button");
+      btnLike.className = "btn-like";
+      btnLike.innerHTML =
+        "<img src='./assets/img/icons8-favorite-30.png' alt='favorite'>";
 
       // like count
-      const likeCount = document.createElement('span');
+      const likeCount = document.createElement("span");
       if (i.likes > 1) {
         likeCount.innerText = `${i.likes} likes`;
       } else {
         likeCount.innerHTML = `${i.likes} like`;
       }
 
+      // btn like event to create new like
+      btnLike.addEventListener("click", () => {
+        createNewLike(i.id, likeCount);
+      });
+
       showLikeAction.append(btnLike, likeCount); // append like actions child element.
 
       showInfo.append(title, showLikeAction); // append in showInfo
 
       // show action
-      const showActions = document.createElement('div');
-      showActions.className = 'show-actions';
+      const showActions = document.createElement("div");
+      showActions.className = "show-actions";
 
       // create child btn
-      const commentBtn = document.createElement('button');
-      commentBtn.className = 'btn-action btn-comment';
-      commentBtn.innerText = 'Comments';
-      commentBtn.addEventListener('click', (e) => {
+      const commentBtn = document.createElement("button");
+      commentBtn.className = "btn-action btn-comment";
+      commentBtn.innerText = "Comments";
+      commentBtn.addEventListener("click", (e) => {
         fetchSingleShowComment(e);
       });
 
-      const reservationBtn = document.createElement('button');
-      reservationBtn.className = 'btn-action btn-reservation';
-      reservationBtn.innerText = 'Reservations';
-      reservationBtn.addEventListener('click', (e) => {
+      const reservationBtn = document.createElement("button");
+      reservationBtn.className = "btn-action btn-reservation";
+      reservationBtn.innerText = "Reservations";
+      reservationBtn.addEventListener("click", (e) => {
         fetchSingleShow(e);
       });
 
@@ -73,6 +79,31 @@ const render = (data) => {
     });
   } else {
     listItemsContainer.innerHTML = '<p class="no-data">No Data Found</p>';
+  }
+};
+
+// createNew like
+const createNewLike = async (id, likeCount) => {
+  const url =
+    "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y1Ocl2k5LoJdVEhHia5O/likes";
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ item_id: id }),
+  });
+
+  if (!res.ok && res.status !== 201) {
+    return;
+  }
+
+  const resp = await fetch(url);
+  const result = await resp.json();
+  const likeData = result.find((item) => item.item_id === id);
+  if (likeData) {
+    likeCount.innerText =
+      likeData.likes > 1 ? `${likeData.likes} likes` : `${likeData.likes} like`;
   }
 };
 
@@ -97,7 +128,7 @@ const fetchTvShows = async (movieApi, invApi) => {
   // filter Array thats have not likes
   let filterWithoutLikes = [];
   filterWithoutLikes = result.filter(
-    (el) => !filterArrWithLikes.find((element) => element.id === el.id),
+    (el) => !filterArrWithLikes.find((element) => element.id === el.id)
   ); //eslint-disable-line
 
   // modify the filterWithout array likes count 0;

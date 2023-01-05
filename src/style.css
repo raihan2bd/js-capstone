@@ -110,6 +110,12 @@ body {
   border: none;
   color: #fff;
   margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-like:active {
+  transform: translateY(-2px);
 }
 
 .show-actions {
