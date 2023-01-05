@@ -1,7 +1,8 @@
-import { listItemsContainer } from './domSelector.js';
+import { itemCountContainer, listItemsContainer } from './domSelector.js';
 import fetchSingleShowComment from './popupComment.js';
 import fetchSingleShow from './popupReservation.js';
 import { BASE_URL, MOVIE_API } from './apiUrls.js';
+import itemCounter from './itemCounter.js';
 
 // createNew like
 const createNewLike = async (id, likeCount) => {
@@ -100,6 +101,7 @@ const render = (data) => {
 
       listItemsContainer.appendChild(item);
     });
+    itemCounter(itemCountContainer, listItemsContainer);
   } else {
     listItemsContainer.innerHTML = '<p class="no-data">No Data Found</p>';
   }
