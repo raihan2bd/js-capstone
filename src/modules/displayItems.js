@@ -1,14 +1,14 @@
-import { listItemsContainer } from './domSelector.js';
-import fetchSingleShowComment from './popupComment.js';
-import fetchSingleShow from './popupReservation.js';
+import { listItemsContainer } from "./domSelector.js";
+import fetchSingleShowComment from "./popupComment.js";
+import fetchSingleShow from "./popupReservation.js";
+import { BASE_URL, MOVIE_API } from "./apiUrls.js";
 
 // createNew like
 const createNewLike = async (id, likeCount) => {
-  const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y1Ocl2k5LoJdVEhHia5O/likes';
-  const res = await fetch(url, {
-    method: 'POST',
+  const res = await fetch(`${BASE_URL}/likes`, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ item_id: id }),
   });
@@ -17,49 +17,51 @@ const createNewLike = async (id, likeCount) => {
     return;
   }
 
-  const resp = await fetch(url);
+  const resp = await fetch(`${BASE_URL}/likes`);
   const result = await resp.json();
   const likeData = result.find((item) => item.item_id === id);
   if (likeData) {
-    likeCount.innerText = likeData.likes > 1 ? `${likeData.likes} likes` : `${likeData.likes} like`;
+    likeCount.innerText =
+      likeData.likes > 1 ? `${likeData.likes} likes` : `${likeData.likes} like`;
   }
 };
 
 // render the item list
 const render = (data) => {
   if (data.length > 0) {
-    listItemsContainer.innerHTML = '';
+    listItemsContainer.innerHTML = "";
 
     data.forEach((i) => {
-      const item = document.createElement('li');
+      const item = document.createElement("li");
       item.id = i.id;
-      item.className = 'show-item';
+      item.className = "show-item";
 
       // create sho Img element
-      const showImg = document.createElement('div');
-      showImg.className = 'show-item-img';
+      const showImg = document.createElement("div");
+      showImg.className = "show-item-img";
       showImg.innerHTML = `<img src='${i.image.original}'>`;
 
       // create show info
-      const showInfo = document.createElement('div');
-      showInfo.className = 'show-info';
+      const showInfo = document.createElement("div");
+      showInfo.className = "show-info";
 
       // create tile for show info
-      const title = document.createElement('h3');
-      title.className = 'show-title';
+      const title = document.createElement("h3");
+      title.className = "show-title";
       title.innerText = i.name;
 
       // like action
-      const showLikeAction = document.createElement('div');
-      showLikeAction.className = 'shwo-like-action';
+      const showLikeAction = document.createElement("div");
+      showLikeAction.className = "shwo-like-action";
 
       // like button
-      const btnLike = document.createElement('button');
-      btnLike.className = 'btn-like';
-      btnLike.innerHTML = "<img src='./assets/img/icons8-favorite-30.png' alt='favorite'>";
+      const btnLike = document.createElement("button");
+      btnLike.className = "btn-like";
+      btnLike.innerHTML =
+        "<img src='./assets/img/icons8-favorite-30.png' alt='favorite'>";
 
       // like count
-      const likeCount = document.createElement('span');
+      const likeCount = document.createElement("span");
       if (i.likes > 1) {
         likeCount.innerText = `${i.likes} likes`;
       } else {
@@ -67,7 +69,7 @@ const render = (data) => {
       }
 
       // btn like event to create new like
-      btnLike.addEventListener('click', () => {
+      btnLike.addEventListener("click", () => {
         createNewLike(i.id, likeCount);
       });
 
@@ -76,21 +78,21 @@ const render = (data) => {
       showInfo.append(title, showLikeAction); // append in showInfo
 
       // show action
-      const showActions = document.createElement('div');
-      showActions.className = 'show-actions';
+      const showActions = document.createElement("div");
+      showActions.className = "show-actions";
 
       // create child btn
-      const commentBtn = document.createElement('button');
-      commentBtn.className = 'btn-action btn-comment';
-      commentBtn.innerText = 'Comments';
-      commentBtn.addEventListener('click', (e) => {
+      const commentBtn = document.createElement("button");
+      commentBtn.className = "btn-action btn-comment";
+      commentBtn.innerText = "Comments";
+      commentBtn.addEventListener("click", (e) => {
         fetchSingleShowComment(e);
       });
 
-      const reservationBtn = document.createElement('button');
-      reservationBtn.className = 'btn-action btn-reservation';
-      reservationBtn.innerText = 'Reservations';
-      reservationBtn.addEventListener('click', (e) => {
+      const reservationBtn = document.createElement("button");
+      reservationBtn.className = "btn-action btn-reservation";
+      reservationBtn.innerText = "Reservations";
+      reservationBtn.addEventListener("click", (e) => {
         fetchSingleShow(e);
       });
 
@@ -105,12 +107,12 @@ const render = (data) => {
   }
 };
 
-const fetchTvShows = async (movieApi, invApi) => {
-  const res = await fetch(movieApi);
+const fetchTvShows = async () => {
+  const res = await fetch(MOVIE_API);
   const result = await res.json();
 
   // call the Involment api to get likes
-  const resInv = await fetch(`${invApi}/likes/`);
+  const resInv = await fetch(`${BASE_URL}/likes/`);
   const likesResult = await resInv.json();
 
   // filter Array thats have Likes
@@ -126,7 +128,7 @@ const fetchTvShows = async (movieApi, invApi) => {
   // filter Array thats have not likes
   let filterWithoutLikes = [];
   filterWithoutLikes = result.filter(
-    (el) => !filterArrWithLikes.find((element) => element.id === el.id),
+    (el) => !filterArrWithLikes.find((element) => element.id === el.id)
   ); //eslint-disable-line
 
   // modify the filterWithout array likes count 0;
