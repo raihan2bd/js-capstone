@@ -309,6 +309,13 @@ button {
   border: 1px solid #333;
 }
 
+.reservation-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media screen and (min-width: 768px) {
   .mobile-nav-group {
     display: none;
