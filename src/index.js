@@ -1,29 +1,29 @@
 // import static files
-import './style.css';
-import './assets/img/icons8-favorite-30.png';
-import './assets/img/icons8-menu-rounded-24.png';
-import './assets/img/icons8-multiply-24.png';
+import "./style.css";
+import "./assets/img/icons8-favorite-30.png";
+import "./assets/img/icons8-menu-rounded-24.png";
+import "./assets/img/icons8-multiply-24.png";
 
-import fetchTvShow from './modules/displayItems.js';
+import fetchTvShow from "./modules/displayItems.js";
 import {
   closeBtn,
   menuBtn,
   mobNavGroup,
   mobileNavlinks,
-} from './modules/domSelector.js';
+} from "./modules/domSelector.js";
 
 // toggle the menu
-menuBtn.addEventListener('click', () => {
-  mobNavGroup.classList.toggle('df');
+menuBtn.addEventListener("click", () => {
+  mobNavGroup.classList.toggle("display-flex");
 });
 
-closeBtn.addEventListener('click', () => {
-  mobNavGroup.classList.remove('df');
+closeBtn.addEventListener("click", () => {
+  mobNavGroup.classList.remove("display-flex");
 });
 
 mobileNavlinks.forEach((item) => {
-  item.addEventListener('click', () => {
-    mobNavGroup.classList.remove('df');
+  item.addEventListener("click", () => {
+    mobNavGroup.classList.remove("display-flex");
   });
 });
 

@@ -15,11 +15,11 @@ a {
   text-decoration: none;
 }
 
-.df {
+.display-flex {
   display: flex !important;
 }
 
-.dn {
+.display-none {
   display: none !important;
 }
 
