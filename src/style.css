@@ -223,10 +223,6 @@ a {
   color: #fff;
 }
 
-.modal-card::-webkit-scrollbar {
-  display: none;
-}
-
 .btn-cross {
   background: transparent;
   border: none;
