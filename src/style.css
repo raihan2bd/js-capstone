@@ -325,8 +325,8 @@ input,
   text-align: justify;
   border-radius: 5px;
   font-size: 1.2rem;
-  color: #fff;
-  background: #010409;
+  color: #010409;
+  background: #fff;
   padding: 8px 15px;
 }
 
@@ -345,8 +345,8 @@ textarea {
   border: 2px solid #333;
   border-radius: 5px;
   font-size: 1.2rem;
-  background: #010409;
-  color: #fff;
+  background: #fff;
+  color: #010409;
 }
 
 button {
