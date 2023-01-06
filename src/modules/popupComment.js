@@ -1,12 +1,12 @@
-import { BASE_URL } from "./apiUrls.js";
-import commentCounter from "./commentCounter.js";
-import { modalContainer } from "./domSelector.js";
+import { BASE_URL } from './apiUrls.js';
+import commentCounter from './commentCounter.js';
+import { modalContainer } from './domSelector.js';
 
 const createNewComment = async (url, data, commentsContainer, Form) => {
   const response = await fetch(url, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   });
@@ -22,14 +22,14 @@ const createNewComment = async (url, data, commentsContainer, Form) => {
   const result = await commentResponse.json();
 
   // manupulate the dom
-  const commentHeader = document.createElement("h3");
-  commentHeader.className = "comment-title";
+  const commentHeader = document.createElement('h3');
+  commentHeader.className = 'comment-title';
   commentHeader.innerHTML = "Comments <span id='show_comment_count'>(0)</span>";
 
-  const commentGroup = document.createElement("ul");
-  commentGroup.className = "comment-goup";
+  const commentGroup = document.createElement('ul');
+  commentGroup.className = 'comment-goup';
 
-  let commentItems = "";
+  let commentItems = '';
 
   if (result.length > 0) {
     result.forEach((item) => {
@@ -39,50 +39,49 @@ const createNewComment = async (url, data, commentsContainer, Form) => {
   }
 
   commentGroup.innerHTML = commentItems; // append comment list
-  commentsContainer.innerHTML = "";
+  commentsContainer.innerHTML = '';
 
   commentCounter(commentHeader.children[0], commentGroup);
 
   commentsContainer.append(commentHeader, commentGroup);
 
-  Form.elements.name.value = "";
-  Form.elements.insight.value = "";
+  Form.elements.name.value = '';
+  Form.elements.insight.value = '';
 };
 
 const render = (data) => {
   // modal card
-  const modalCard = document.createElement("div");
-  modalCard.className = "modal-card";
+  const modalCard = document.createElement('div');
+  modalCard.className = 'modal-card';
 
   // button
-  const btnCross = document.createElement("button");
-  btnCross.className = "btn-cross";
-  btnCross.innerHTML =
-    '<img src="./assets/img/icons8-multiply-24.png" alt="X" />';
-  btnCross.addEventListener("click", () => {
-    modalContainer.classList.remove("show");
+  const btnCross = document.createElement('button');
+  btnCross.className = 'btn-cross';
+  btnCross.innerHTML = '<img src="./assets/img/icons8-multiply-24.png" alt="X" />';
+  btnCross.addEventListener('click', () => {
+    modalContainer.classList.remove('show');
   });
 
   // card img
-  const cardImg = document.createElement("div");
-  cardImg.className = "card-img";
+  const cardImg = document.createElement('div');
+  cardImg.className = 'card-img';
   cardImg.innerHTML = `<img
   src="${data.image.original}"
   alt="${data.name}"
 />`;
 
   // card title
-  const title = document.createElement("h2");
-  title.className = "card-title";
+  const title = document.createElement('h2');
+  title.className = 'card-title';
   title.innerText = data.name;
   // card des
-  const des = document.createElement("div");
-  des.className = "card-des";
+  const des = document.createElement('div');
+  des.className = 'card-des';
   des.innerHTML = data.summary;
 
   // card spec group
-  const cardSpec = document.createElement("div");
-  cardSpec.className = "card-spec-group";
+  const cardSpec = document.createElement('div');
+  cardSpec.className = 'card-spec-group';
   cardSpec.innerHTML = `<ul class="card-spec">
   <li class="spec-item">Season: ${data.season}</li>
   <li class="spec-item">Duration: ${data.runtime}</li>
@@ -92,17 +91,17 @@ const render = (data) => {
   <li class="spec-item">Rating: ${data.rating.average}</li>
 </ul>`;
 
-  const commentSection = document.createElement("div");
-  commentSection.className = "comment-section";
+  const commentSection = document.createElement('div');
+  commentSection.className = 'comment-section';
 
-  const commentHeader = document.createElement("h3");
-  commentHeader.className = "comment-title";
+  const commentHeader = document.createElement('h3');
+  commentHeader.className = 'comment-title';
   commentHeader.innerHTML = "Comments <span id='show_comment_count'>(0)</span>";
 
-  const commentGroup = document.createElement("ul");
-  commentGroup.className = "comment-goup";
+  const commentGroup = document.createElement('ul');
+  commentGroup.className = 'comment-goup';
 
-  let commentItems = "";
+  let commentItems = '';
 
   if (data.comments.length > 0) {
     data.comments.forEach((item) => {
@@ -118,12 +117,12 @@ const render = (data) => {
   commentSection.append(commentHeader, commentGroup);
 
   // Add comment
-  const commentForm = document.createElement("div");
-  commentForm.className = "comment-form";
-  const addComment = document.createElement("h3");
-  addComment.className = "comment-title";
-  addComment.innerText = "Add a comment";
-  const Form = document.createElement("form");
+  const commentForm = document.createElement('div');
+  commentForm.className = 'comment-form';
+  const addComment = document.createElement('h3');
+  addComment.className = 'comment-title';
+  addComment.innerText = 'Add a comment';
+  const Form = document.createElement('form');
   Form.innerHTML = `
 <input type="text"  name="name" id="name" placeholder="Your name" maxlength="10" required>
 <textarea id="insight" name="insight" placeholder="Your insights"></textarea>
@@ -131,7 +130,7 @@ const render = (data) => {
 
   commentForm.append(addComment, Form);
 
-  Form.addEventListener("submit", async (e) => {
+  Form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = Form.elements.name.value;
     const insight = Form.elements.insight.value;
@@ -151,15 +150,15 @@ const render = (data) => {
     des,
     cardSpec,
     commentSection,
-    commentForm
+    commentForm,
   );
 
-  modalContainer.innerHTML = "";
+  modalContainer.innerHTML = '';
   modalContainer.append(modalCard); // append cardModal
 };
 
 const fetchSingleShowComment = async (e) => {
-  modalContainer.classList.add("show");
+  modalContainer.classList.add('show');
   const { id } = e.target.parentElement.parentElement;
   const url = `https://api.tvmaze.com/episodes/${id}`;
   const response = await fetch(url);
