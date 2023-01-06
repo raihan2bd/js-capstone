@@ -1,0 +1,415 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+  background: #0d1117;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+.display-flex {
+  display: flex !important;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.header {
+  padding: 3%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #161b22;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ff7b00;
+}
+
+.nav-menu {
+  display: block;
+  background: transparent;
+  border: 1px solid #333;
+  padding: 3px 5px;
+  align-self: center;
+}
+
+.nav-menu:active {
+  background: #333;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-nav-group {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  list-style: none;
+  flex-direction: column;
+  margin: 0;
+  padding: 50px 0;
+  gap: 20px;
+  background: #161b22;
+}
+
+.desktop-nav-group {
+  display: none;
+}
+
+.nav-link {
+  color: #fff;
+  color: #ff7b00;
+  padding: 8px 10px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.mobile-nav-group .nav-link {
+  display: block;
+  padding: 15px 20px;
+  margin-bottom: 5px;
+  background: #0d1117;
+}
+
+.nav-link:hover {
+  color: #fff;
+  background: #ff7b00;
+}
+
+.footer {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  position: relative;
+  text-align: center;
+  padding: 20px 25px;
+  background: #161b22;
+  border-top: 1px solid #333;
+}
+
+/* Main content css start form here */
+.main-container {
+  display: flex;
+  margin: 70px 0;
+  flex-direction: column;
+}
+
+.tv-shows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show-title {
+  text-align: center;
+}
+
+.show-group {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  gap: 20px;
+}
+
+.show-item {
+  padding: 20px;
+  background: #161b22;
+  border: 1px solid #333;
+}
+
+.show-item-img {
+  display: block;
+  max-width: 100%;
+}
+
+.show-item-img img {
+  max-width: 100%;
+}
+
+.show-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-like {
+  background: transparent;
+  border: none;
+  color: #fff;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-like:active {
+  transform: translateY(-2px);
+}
+
+.show-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn-action {
+  padding: 10px 15px;
+  background: #ff7b00;
+  color: #fff;
+  border: none;
+}
+
+.btn-action:active {
+  transform: translateY(-2px);
+}
+
+/* Article modal css styles will start from here */
+.popup-modal {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(8, 19, 43, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  justify-content: center;
+}
+
+.modal-card {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  background: #161b22;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  gap: 10px;
+  padding: 24px;
+  max-width: 1156px;
+  margin: 25px 15px;
+  position: relative;
+  color: #fff;
+}
+
+.btn-cross {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.btn-cross:active {
+  transform: translateY(-2px);
+}
+
+.card-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.card-img img {
+  max-width: 100%;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.card-spec-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #333;
+}
+
+.card-spec {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 25px;
+  max-width: 600px;
+}
+
+.spec-item {
+  padding: 15px;
+  text-align: justify;
+}
+
+.show {
+  display: flex;
+}
+
+.comment-title {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: normal;
+}
+
+.comment-goup {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 15px;
+}
+
+.comment-item {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #333;
+}
+
+.comment-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input,
+#submitBtn {
+  border: 2px solid #333;
+  text-align: justify;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  color: #010409;
+  background: #fff;
+  padding: 8px 15px;
+}
+
+#submitBtn {
+  width: fit-content;
+  padding: 10px 20px;
+  background: #ff7b00;
+  color: #fff;
+  border: none;
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+  padding: 10px 20px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  background: #fff;
+  color: #010409;
+}
+
+button {
+  cursor: pointer;
+}
+
+.reservation-title {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: normal;
+}
+
+.reservation-group {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 15px;
+}
+
+.reservation-item {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #333;
+}
+
+.reservation-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-nav-group {
+    display: none;
+  }
+
+  .desktop-nav-group {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  /* Main content css start from here */
+  .show-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .show-item {
+    width: 32%;
+  }
+
+  /* popup modal css */
+  .card-des {
+    padding: 0 5%;
+  }
+}
