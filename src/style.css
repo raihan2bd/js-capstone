@@ -291,13 +291,31 @@ a {
   display: flex;
 }
 
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .comment-title {
+  display: flex;
+  align-items: center;
   text-align: center;
   margin: 10px 0;
   font-weight: normal;
 }
 
+.comment-header {
+  margin-right: 10px;
+}
+
+#show_comment_count {
+  font-size: 1.2rem;
+}
+
 .comment-goup {
+  width: 100%;
+  max-width: 600px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -308,9 +326,33 @@ a {
 }
 
 .comment-item {
-  padding: 10px;
-  margin: 10px;
+  width: 100%;
+  margin: 5px;
   border: 1px solid #333;
+}
+
+.user-info {
+  background: #0d1117;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #333;
+  padding: 0 15px;
+}
+
+.user-avatar {
+  margin-right: 10px;
+}
+
+.user-name {
+  margin-right: 10px;
+}
+
+.submit-date {
+  margin-left: auto;
+}
+
+.user-data {
+  padding: 15px;
 }
 
 .comment-form {
