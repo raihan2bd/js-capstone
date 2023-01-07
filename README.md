@@ -125,7 +125,7 @@ npm install --save-dev
 👤 **Abu Raihan**
 
 - GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
+- Twitter: [@twitterhandle](https://twitter.com/raihan2bd)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/raihan2bd)
 
 👤 **Salwa Ballouti**
