@@ -34,7 +34,14 @@ const createNewReservation = async (url, data, reservationContainer, Form) => {
   if (result.length > 0) {
     result.forEach((item) => {
       reservationItems += `<li class='reservation-item'>
-      ${item.date_start} - ${item.date_end} by ${item.username}</li>`;
+      <div class='user-info'>
+        <div class='user-avatar'>
+          <img src='./assets/img/user.png' alt='${item.username}'/>
+        </div>
+        <h4 class='user-name'>${item.username}</h4>
+        <span class='submit-date'>${item.date_start} - ${item.date_end}</span>
+      </div>
+    </li>`;
     });
   }
 
@@ -108,7 +115,14 @@ const render = (data) => {
   if (data.reservations.length > 0) {
     data.reservations.forEach((item) => {
       reservationItems += `<li class='reservation-item'>
-      ${item.date_start} - ${item.date_end} by ${item.username}</li>`;
+      <div class='user-info'>
+        <div class='user-avatar'>
+          <img src='./assets/img/user.png' alt='${item.username}'/>
+        </div>
+        <h4 class='user-name'>${item.username}</h4>
+        <span class='submit-date'>${item.date_start} - ${item.date_end}</span>
+      </div>
+    </li>`;
     });
   }
 
