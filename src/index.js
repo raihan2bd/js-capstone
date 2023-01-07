@@ -1,6 +1,5 @@
 // import static files
 import './style.css';
-import './assets/img/icons8-favorite-30.png';
 import './assets/img/icons8-menu-rounded-24.png';
 import './assets/img/icons8-multiply-24.png';
 

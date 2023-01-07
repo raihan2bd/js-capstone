@@ -173,6 +173,16 @@ a {
   transform: translateY(-2px);
 }
 
+.btn-like img {
+  width: 22px;
+  max-width: 100%;
+  filter: invert(54%) sepia(62%) saturate(3447%) hue-rotate(0deg) brightness(102%) contrast(103%);
+}
+
+.btn-like:disabled {
+  cursor: not-allowed;
+}
+
 .show-actions {
   display: flex;
   flex-direction: column;
@@ -325,9 +335,11 @@ input,
   text-align: justify;
   border-radius: 5px;
   font-size: 1.2rem;
-  color: #010409;
-  background: #fff;
+  color: #fff;
+  background: #010409;
   padding: 8px 15px;
+  /* stylelint-disable-next-line */
+  color-scheme: dark;
 }
 
 #submitBtn {
@@ -345,8 +357,8 @@ textarea {
   border: 2px solid #333;
   border-radius: 5px;
   font-size: 1.2rem;
-  background: #fff;
-  color: #010409;
+  background: #010409;
+  color: #fff;
 }
 
 button {
@@ -405,7 +417,7 @@ button {
   }
 
   .show-item {
-    width: 32%;
+    width: 31%;
   }
 
   /* popup modal css */
