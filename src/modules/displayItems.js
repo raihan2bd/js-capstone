@@ -136,31 +136,18 @@ const fetchTvShows = async () => {
   const responseInvolvement = await fetch(`${BASE_URL}/likes/`);
   const likesResult = await responseInvolvement.json();
 
-  // filter Array thats have Likes
-  const filterArrWithLikes = [];
-  result.forEach((item) => {
-    likesResult.forEach((likeItem) => {
-      if (item.id === likeItem.item_id) {
-        filterArrWithLikes.push({ ...item, likes: likeItem.likes });
+  // Distribute likes with correct array.
+  let joinArr = [];
+  if (!(likesResult.length <= 0)) {
+    joinArr = result.map((movieItem) => {
+      let likes = 0;
+      const findLikes = likesResult.find((likeItem) => likeItem.item_id === movieItem.id);
+      if (findLikes) {
+        likes = findLikes.likes;
       }
+      return { ...movieItem, likes };
     });
-  });
-
-  // filter Array thats have not likes
-  let filterWithoutLikes = [];
-  filterWithoutLikes = result.filter(
-    (el) => !filterArrWithLikes.find((element) => element.id === el.id),
-  ); //eslint-disable-line
-
-  // modify the filterWithout array likes count 0;
-  const modifiyFilterWithoutLikes = [];
-  filterWithoutLikes.forEach((item) => {
-    modifiyFilterWithoutLikes.push({ ...item, likes: 0 });
-  });
-
-  // join and sort the arrays
-  const joinArr = modifiyFilterWithoutLikes.concat(filterArrWithLikes);
-  joinArr.sort((a, b) => a.id - b.id);
+  }
 
   // call render function to display the item list
   render(joinArr);
