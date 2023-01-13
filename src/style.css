@@ -173,6 +173,16 @@ a {
   transform: translateY(-2px);
 }
 
+.btn-like img {
+  width: 22px;
+  max-width: 100%;
+  filter: invert(54%) sepia(62%) saturate(3447%) hue-rotate(0deg) brightness(102%) contrast(103%);
+}
+
+.btn-like:disabled {
+  cursor: not-allowed;
+}
+
 .show-actions {
   display: flex;
   flex-direction: column;
@@ -281,13 +291,31 @@ a {
   display: flex;
 }
 
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .comment-title {
+  display: flex;
+  align-items: center;
   text-align: center;
   margin: 10px 0;
   font-weight: normal;
 }
 
+.comment-header {
+  margin-right: 10px;
+}
+
+#show_comment_count {
+  font-size: 1.2rem;
+}
+
 .comment-goup {
+  width: 100%;
+  max-width: 600px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -298,9 +326,33 @@ a {
 }
 
 .comment-item {
-  padding: 10px;
-  margin: 10px;
+  width: 100%;
+  margin: 5px;
   border: 1px solid #333;
+}
+
+.user-info {
+  background: #0d1117;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #333;
+  padding: 0 15px;
+}
+
+.user-avatar {
+  margin-right: 10px;
+}
+
+.user-name {
+  margin-right: 10px;
+}
+
+.submit-date {
+  margin-left: auto;
+}
+
+.user-data {
+  padding: 15px;
 }
 
 .comment-form {
@@ -325,9 +377,11 @@ input,
   text-align: justify;
   border-radius: 5px;
   font-size: 1.2rem;
-  color: #010409;
-  background: #fff;
+  color: #fff;
+  background: #010409;
   padding: 8px 15px;
+  /* stylelint-disable-next-line */
+  color-scheme: dark;
 }
 
 #submitBtn {
@@ -345,12 +399,18 @@ textarea {
   border: 2px solid #333;
   border-radius: 5px;
   font-size: 1.2rem;
-  background: #fff;
-  color: #010409;
+  background: #010409;
+  color: #fff;
 }
 
 button {
   cursor: pointer;
+}
+
+.reservation-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .reservation-title {
@@ -360,6 +420,8 @@ button {
 }
 
 .reservation-group {
+  width: 100%;
+  max-width: 600px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -370,8 +432,8 @@ button {
 }
 
 .reservation-item {
-  padding: 10px;
-  margin: 10px;
+  width: 100%;
+  margin: 5px;
   border: 1px solid #333;
 }
 
@@ -405,7 +467,7 @@ button {
   }
 
   .show-item {
-    width: 32%;
+    width: 31%;
   }
 
   /* popup modal css */

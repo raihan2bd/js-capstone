@@ -22,9 +22,16 @@ const createNewComment = async (url, data, commentsContainer, Form) => {
   const result = await commentResponse.json();
 
   // manupulate the dom
+  const commentTite = document.createElement('div');
+  commentTite.className = 'comment-title';
   const commentHeader = document.createElement('h3');
-  commentHeader.className = 'comment-title';
-  commentHeader.innerHTML = "Comments <span id='show_comment_count'>(0)</span>";
+  commentHeader.className = 'comment-header';
+  commentHeader.innerHTML = 'Comments';
+  const commentCount = document.createElement('p');
+  commentCount.id = 'show_comment_count';
+  commentCount.innerText = 0;
+
+  commentTite.append(commentHeader, commentCount);
 
   const commentGroup = document.createElement('ul');
   commentGroup.className = 'comment-goup';
@@ -34,16 +41,24 @@ const createNewComment = async (url, data, commentsContainer, Form) => {
   if (result.length > 0) {
     result.forEach((item) => {
       commentItems += `<li class='comment-item'>
-        ${item.creation_date} ${item.username} ${item.comment}</li>`;
+      <div class='user-info'>
+        <div class='user-avatar'>
+          <img src='./assets/img/user.png' alt='${item.username}'/>
+        </div>
+        <h4 class='user-name'>${item.username}</h4>
+        <span class='submit-date'>${item.creation_date}</span>
+      </div>
+      <p class='user-data'>${item.comment}</p>
+    </li>`;
     });
   }
 
   commentGroup.innerHTML = commentItems; // append comment list
   commentsContainer.innerHTML = '';
 
-  commentCounter(commentHeader.children[0], commentGroup);
+  commentCounter(commentCount, commentGroup);
 
-  commentsContainer.append(commentHeader, commentGroup);
+  commentsContainer.append(commentTite, commentGroup);
 
   Form.elements.name.value = '';
   Form.elements.insight.value = '';
@@ -94,9 +109,16 @@ const render = (data) => {
   const commentSection = document.createElement('div');
   commentSection.className = 'comment-section';
 
+  const commentTite = document.createElement('div');
+  commentTite.className = 'comment-title';
   const commentHeader = document.createElement('h3');
-  commentHeader.className = 'comment-title';
-  commentHeader.innerHTML = "Comments <span id='show_comment_count'>(0)</span>";
+  commentHeader.className = 'comment-header';
+  commentHeader.innerHTML = 'Comments';
+  const commentCount = document.createElement('p');
+  commentCount.id = 'show_comment_count';
+  commentCount.innerText = 0;
+
+  commentTite.append(commentHeader, commentCount);
 
   const commentGroup = document.createElement('ul');
   commentGroup.className = 'comment-goup';
@@ -106,15 +128,23 @@ const render = (data) => {
   if (data.comments.length > 0) {
     data.comments.forEach((item) => {
       commentItems += `<li class='comment-item'>
-      ${item.creation_date} ${item.username} ${item.comment}</li>`;
+        <div class='user-info'>
+          <div class='user-avatar'>
+            <img src='./assets/img/user.png' alt='${item.username}'/>
+          </div>
+          <h4 class='user-name'>${item.username}</h4>
+          <span class='submit-date'>${item.creation_date}</span>
+        </div>
+        <p class='user-data'>${item.comment}</p>
+      </li>`;
     });
   }
 
   commentGroup.innerHTML = commentItems; // append comment list
 
-  commentCounter(commentHeader.children[0], commentGroup);
+  commentCounter(commentCount, commentGroup);
 
-  commentSection.append(commentHeader, commentGroup);
+  commentSection.append(commentTite, commentGroup);
 
   // Add comment
   const commentForm = document.createElement('div');
